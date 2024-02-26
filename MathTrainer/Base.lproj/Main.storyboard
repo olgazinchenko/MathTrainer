@@ -234,13 +234,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BN-Re-q8A">
-                                <rect key="frame" x="50.000000000000007" y="50" width="68.666666666666686" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BN-Re-q8A">
+                                <rect key="frame" x="313" y="40" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="4kY-cL-Yf7"/>
+                                    <constraint firstAttribute="height" constant="40" id="TCg-4E-uY8"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Back">
-                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="20"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="YHA-gn-kch" kind="unwind" unwindAction="unwindActionWithUnwindSeque:" id="xdq-Ri-KS0"/>
                                 </connections>
@@ -300,8 +308,8 @@
                             <constraint firstItem="vOx-nE-Spu" firstAttribute="centerX" secondItem="8Os-Rj-yd5" secondAttribute="centerX" constant="60" id="15f-VD-iMr"/>
                             <constraint firstItem="wmX-93-ZKR" firstAttribute="top" secondItem="ghU-tr-KbN" secondAttribute="bottom" constant="120" id="3tq-me-wgN"/>
                             <constraint firstItem="vOx-nE-Spu" firstAttribute="centerY" secondItem="wmX-93-ZKR" secondAttribute="centerY" id="Gvs-7Z-Rdw"/>
-                            <constraint firstItem="5BN-Re-q8A" firstAttribute="top" secondItem="IqZ-gm-Da7" secondAttribute="top" constant="50" id="NHT-hy-tQx"/>
-                            <constraint firstItem="5BN-Re-q8A" firstAttribute="leading" secondItem="IqZ-gm-Da7" secondAttribute="leading" constant="50" id="kqb-lN-TbW"/>
+                            <constraint firstItem="5BN-Re-q8A" firstAttribute="top" secondItem="IqZ-gm-Da7" secondAttribute="top" constant="40" id="NHT-hy-tQx"/>
+                            <constraint firstItem="IqZ-gm-Da7" firstAttribute="trailing" secondItem="5BN-Re-q8A" secondAttribute="trailing" constant="40" id="eQj-G8-FKL"/>
                             <constraint firstItem="ghU-tr-KbN" firstAttribute="centerY" secondItem="8Os-Rj-yd5" secondAttribute="centerY" constant="-30" id="mQw-h1-GQ5"/>
                             <constraint firstItem="ghU-tr-KbN" firstAttribute="centerX" secondItem="8Os-Rj-yd5" secondAttribute="centerX" id="pVK-pD-J0d"/>
                             <constraint firstItem="wmX-93-ZKR" firstAttribute="centerX" secondItem="8Os-Rj-yd5" secondAttribute="centerX" constant="-60" id="u9Q-ZS-4os"/>
@@ -311,12 +319,13 @@
                     <connections>
                         <outletCollection property="buttonsCollection" destination="wmX-93-ZKR" collectionClass="NSMutableArray" id="kb1-kG-oQg"/>
                         <outletCollection property="buttonsCollection" destination="vOx-nE-Spu" collectionClass="NSMutableArray" id="Ppp-07-Dkh"/>
+                        <outletCollection property="buttonsCollection" destination="5BN-Re-q8A" collectionClass="NSMutableArray" id="neR-yS-nUF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLc-qS-dpg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="YHA-gn-kch" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="636" y="4"/>
+            <point key="canvasLocation" x="635.87786259541986" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
