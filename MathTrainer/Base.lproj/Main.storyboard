@@ -235,9 +235,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BN-Re-q8A">
-                                <rect key="frame" x="50" y="50" width="61.666666666666657" height="35"/>
+                                <rect key="frame" x="50.000000000000007" y="50" width="68.666666666666686" height="38"/>
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="20"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="YHA-gn-kch" kind="unwind" unwindAction="unwindActionWithUnwindSeque:" id="xdq-Ri-KS0"/>
                                 </connections>
@@ -305,6 +308,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wVS-eC-PjZ"/>
+                    <connections>
+                        <outletCollection property="buttonsCollection" destination="wmX-93-ZKR" collectionClass="NSMutableArray" id="kb1-kG-oQg"/>
+                        <outletCollection property="buttonsCollection" destination="vOx-nE-Spu" collectionClass="NSMutableArray" id="Ppp-07-Dkh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLc-qS-dpg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="YHA-gn-kch" userLabel="Exit" sceneMemberID="exit"/>
