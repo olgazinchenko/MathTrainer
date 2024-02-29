@@ -278,6 +278,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lEd-s3-96U"/>
+                                    <action selector="leftAction:" destination="mzT-Qm-9ja" eventType="touchUpInside" id="Amk-Qv-GWJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOx-nE-Spu">
@@ -299,6 +300,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uDh-RV-xNV"/>
+                                    <action selector="rightAction:" destination="mzT-Qm-9ja" eventType="touchUpInside" id="k6y-m3-1Gn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -317,6 +319,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="wVS-eC-PjZ"/>
                     <connections>
+                        <outlet property="leftButton" destination="wmX-93-ZKR" id="8g3-NH-RDj"/>
+                        <outlet property="questionLabel" destination="ghU-tr-KbN" id="4MK-03-CU7"/>
+                        <outlet property="rightButton" destination="vOx-nE-Spu" id="jhG-Wc-MQp"/>
                         <outletCollection property="buttonsCollection" destination="wmX-93-ZKR" collectionClass="NSMutableArray" id="kb1-kG-oQg"/>
                         <outletCollection property="buttonsCollection" destination="vOx-nE-Spu" collectionClass="NSMutableArray" id="Ppp-07-Dkh"/>
                         <outletCollection property="buttonsCollection" destination="5BN-Re-q8A" collectionClass="NSMutableArray" id="neR-yS-nUF"/>
@@ -325,7 +330,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLc-qS-dpg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="YHA-gn-kch" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="635.87786259541986" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="640" y="4"/>
         </scene>
     </scenes>
     <resources>
