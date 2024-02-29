@@ -15,6 +15,9 @@ final class TrainViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     
     // MARK: - Properties
+    private let correctAnswerColor: UIColor = .systemMint
+    private let incorrectAnswerColor: UIColor = .systemPink
+    
     var type: MathTypes = .add {
         didSet {
             switch type {
@@ -105,10 +108,10 @@ final class TrainViewController: UIViewController {
     private func check(answer: String, for button: UIButton) {
         let isRightAnswer = Int(answer) == self.answer
         
-        button.backgroundColor = isRightAnswer ? .green : .red
+        button.backgroundColor = isRightAnswer ? correctAnswerColor : incorrectAnswerColor
         
         if isRightAnswer {
-            let isSecondAttempt: Bool = leftButton.backgroundColor == .red || rightButton.backgroundColor == .red
+            let isSecondAttempt: Bool = leftButton.backgroundColor == incorrectAnswerColor || rightButton.backgroundColor == incorrectAnswerColor
                 count += isSecondAttempt ? 0 : 1
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
