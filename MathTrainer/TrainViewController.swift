@@ -13,6 +13,7 @@ final class TrainViewController: UIViewController {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     // MARK: - Properties
     private let correctAnswerColor: UIColor = .systemMint
@@ -38,7 +39,7 @@ final class TrainViewController: UIViewController {
     private var sign: String = ""
     private var count: Int = 0 {
         didSet {
-            print("Count: \(count)")
+            scoreLabel.text = "Score: \(count)"
         }
     }
     
