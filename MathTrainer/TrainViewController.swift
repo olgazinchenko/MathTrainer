@@ -90,8 +90,11 @@ final class TrainViewController: UIViewController {
         var randomAnswer: Int
         repeat {
             randomAnswer = Int.random(in: (answer - 10)...(answer + 10))
+            // Avoiding situations when random answer less than zero
+            if type == .divide && randomAnswer < 0 {
+                randomAnswer = -randomAnswer
+            }
         } while randomAnswer == answer
-
         
         rightButton.setTitle(isRightButton ? String(answer) : String(randomAnswer), for: .normal)
         leftButton.setTitle(isRightButton ? String(randomAnswer) : String(answer), for: .normal)
@@ -100,8 +103,24 @@ final class TrainViewController: UIViewController {
     private func configureQuestion() {
         firstNumber = Int.random(in: 1...99)
         secondNumber = Int.random(in: 1...99)
-        let question: String = "\(firstNumber) \(sign) \(secondNumber) ="
         
+        if type == .divide {
+            // Avoiding situations when a divider more than a dividend
+            if firstNumber < secondNumber {
+                let number = firstNumber
+                firstNumber = secondNumber
+                secondNumber = number
+            }
+            if firstNumber % secondNumber != 0 {
+                let divisionRemainder = firstNumber % secondNumber
+                let randomMultiplayer = Int.random(in: 1...3)
+                firstNumber -= divisionRemainder
+                // Avoiding situations when a dividend equals zero
+                firstNumber = firstNumber * randomMultiplayer
+            }
+        }
+        
+        let question: String = "\(firstNumber) \(sign) \(secondNumber) ="
         questionLabel.text = question
     }
     
@@ -112,7 +131,7 @@ final class TrainViewController: UIViewController {
         
         if isRightAnswer {
             let isSecondAttempt: Bool = leftButton.backgroundColor == incorrectAnswerColor || rightButton.backgroundColor == incorrectAnswerColor
-                count += isSecondAttempt ? 0 : 1
+            count += isSecondAttempt ? 0 : 1
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                 self?.configureQuestion()
