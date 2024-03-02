@@ -214,7 +214,12 @@
                             <constraint firstItem="B4g-lt-bvB" firstAttribute="centerY" secondItem="U3a-FR-WnY" secondAttribute="centerY" id="wiU-r5-5Ea"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kLk-ZF-FVV"/>
                     <connections>
+                        <outlet property="addLabel" destination="cej-rF-Igp" id="q9a-CH-96E"/>
+                        <outlet property="divideLabel" destination="FSz-ce-nNn" id="koC-f6-mfv"/>
+                        <outlet property="multiplyLabel" destination="4xK-7U-OWd" id="mkl-UH-NVh"/>
+                        <outlet property="subtractLabel" destination="Rs9-im-ycl" id="h5G-cj-vDy"/>
                         <outletCollection property="buttonsCollection" destination="TWf-fR-VB4" collectionClass="NSMutableArray" id="BCk-SQ-ErO"/>
                         <outletCollection property="buttonsCollection" destination="6kD-d0-ACc" collectionClass="NSMutableArray" id="sYo-kR-jdC"/>
                         <outletCollection property="buttonsCollection" destination="rDa-8z-DGL" collectionClass="NSMutableArray" id="Khf-44-Khm"/>

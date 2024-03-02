@@ -63,8 +63,12 @@ final class TrainViewController: UIViewController {
         configureButtons()
     }
     
-    // MARK: - IBActions
+    override func viewDidDisappear(_ animated: Bool) {
+        // Add score to the dictionary
+        ViewController.mathTypeScore[type]? += count
+    }
     
+    // MARK: - IBActions
     @IBAction func leftAction(_ sender: UIButton) {
         check(answer: sender.titleLabel?.text ?? "", for: sender)
     }

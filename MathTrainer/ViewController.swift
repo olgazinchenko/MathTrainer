@@ -14,14 +14,39 @@ enum MathTypes: Int {
 class ViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet var buttonsCollection: [UIButton]!
+    @IBOutlet weak var addLabel: UILabel!
+    @IBOutlet weak var subtractLabel: UILabel!
+    @IBOutlet weak var multiplyLabel: UILabel!
+    @IBOutlet weak var divideLabel: UILabel!
     
     // MARK: - Properties
     private var selectedType: MathTypes = .add
+    static var mathTypeScore: [MathTypes: Int] = [
+        .add: 0,
+        .subtract: 0,
+        .multiply: 0,
+        .divide: 0] {
+            didSet {
+                print(mathTypeScore.values)
+                NotificationCenter.default.post(name: Notification.Name("DictionaryDidChange"), object: nil)
+            }
+        }
     
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureButtons()
+        
+        // Register observer for dictionary changes
+        NotificationCenter.default.addObserver(self, selector: #selector(updateScore), name: Notification.Name("DictionaryDidChange"), object: nil)
+        
+        // Update label with initial dictionary values
+        updateScore()
+    }
+    
+    deinit {
+        // Remove observer when no longer needed
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("DictionaryDidChange"), object: nil)
     }
     
     // MARK: - Actions
@@ -47,6 +72,13 @@ class ViewController: UIViewController {
             button.layer.shadowOpacity = 0.4
             button.layer.shadowRadius = 3
         }
+    }
+    
+    @objc func updateScore() {
+        addLabel.text = String(ViewController.mathTypeScore[.add] ?? 0)
+        subtractLabel.text = String(ViewController.mathTypeScore[.subtract] ?? 0)
+        multiplyLabel.text = String(ViewController.mathTypeScore[.multiply] ?? 0)
+        divideLabel.text = String(ViewController.mathTypeScore[.divide] ?? 0)
     }
 
 }
