@@ -16,9 +16,6 @@ final class TrainViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     
     // MARK: - Properties
-    private let correctAnswerColor: UIColor = .systemMint
-    private let incorrectAnswerColor: UIColor = .systemPink
-    
     var type: MathTypes = .add {
         didSet {
             switch type {
@@ -56,6 +53,9 @@ final class TrainViewController: UIViewController {
         }
     }
     
+    private let correctAnswerColor: UIColor = .systemMint
+    private let incorrectAnswerColor: UIColor = .systemPink
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,17 +69,21 @@ final class TrainViewController: UIViewController {
     }
     
     // MARK: - IBActions
-    @IBAction func leftAction(_ sender: UIButton) {
+    @IBAction func leftButtonAction(_ sender: UIButton) {
         check(answer: sender.titleLabel?.text ?? "", for: sender)
+        updateQuesionAndButtons()
     }
     
-    @IBAction func rightAction(_ sender: UIButton) {
+    @IBAction func rightButtonAction(_ sender: UIButton) {
         check(answer: sender.titleLabel?.text ?? "", for: sender)
+        updateQuesionAndButtons()
     }
     
     // MARK: - Methods
     private func configureButtons() {
         let buttonsArray = [leftButton, rightButton]
+        
+        // Set main color to buttons
         buttonsArray.forEach { button in
             button?.backgroundColor = .systemYellow
         }
@@ -91,16 +95,9 @@ final class TrainViewController: UIViewController {
             button.layer.shadowRadius = 3
         }
         
+        // Set random and right answers to random buttons
         let isRightButton = Bool.random()
-        var randomAnswer: Int
-        repeat {
-            randomAnswer = Int.random(in: (answer - 10)...(answer + 10))
-            // Avoiding situations when random answer less than zero
-            if type == .divide && randomAnswer < 0 {
-                randomAnswer = -randomAnswer
-            }
-        } while randomAnswer == answer
-        
+        let randomAnswer = getRandomAnswer()
         rightButton.setTitle(isRightButton ? String(answer) : String(randomAnswer), for: .normal)
         leftButton.setTitle(isRightButton ? String(randomAnswer) : String(answer), for: .normal)
     }
@@ -124,9 +121,21 @@ final class TrainViewController: UIViewController {
                 firstNumber = firstNumber * randomMultiplayer
             }
         }
+
+        questionLabel.text = "\(firstNumber) \(sign) \(secondNumber) ="
+    }
+
+    private func getRandomAnswer() -> Int {
+        var randomAnswer: Int
+        repeat {
+            randomAnswer = Int.random(in: (answer - 10)...(answer + 10))
+            // Avoiding situations when random answer less than zero
+            if type == .divide && randomAnswer < 0 {
+                randomAnswer = -randomAnswer
+            }
+        } while randomAnswer == answer
         
-        let question: String = "\(firstNumber) \(sign) \(secondNumber) ="
-        questionLabel.text = question
+        return randomAnswer
     }
     
     private func check(answer: String, for button: UIButton) {
@@ -137,11 +146,13 @@ final class TrainViewController: UIViewController {
         if isRightAnswer {
             let isSecondAttempt: Bool = leftButton.backgroundColor == incorrectAnswerColor || rightButton.backgroundColor == incorrectAnswerColor
             count += isSecondAttempt ? 0 : 1
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                self?.configureQuestion()
-                self?.configureButtons()
-            }
+        }
+    }
+    
+    private func updateQuesionAndButtons() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.configureQuestion()
+            self?.configureButtons()
         }
     }
 }

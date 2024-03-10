@@ -27,7 +27,6 @@ class ViewController: UIViewController {
         .multiply: 0,
         .divide: 0] {
             didSet {
-                print(mathTypeScore.values)
                 NotificationCenter.default.post(name: Notification.Name("DictionaryDidChange"), object: nil)
             }
         }
@@ -42,11 +41,6 @@ class ViewController: UIViewController {
         
         // Update label with initial dictionary values
         updateScore()
-    }
-    
-    deinit {
-        // Remove observer when no longer needed
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("DictionaryDidChange"), object: nil)
     }
     
     // MARK: - Actions
