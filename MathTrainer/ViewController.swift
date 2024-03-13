@@ -11,7 +11,8 @@ enum MathTypes: Int {
     case add, subtract, multiply, divide
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TrainViewControllerDelegate {
+    
     // MARK: - IBOutlets
     @IBOutlet var buttonsCollection: [UIButton]!
     @IBOutlet weak var addLabel: UILabel!
@@ -21,26 +22,28 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     private var selectedType: MathTypes = .add
-    static var mathTypeScore: [MathTypes: Int] = [
+    private var mathTypeScore: [MathTypes: Int] = [
         .add: 0,
         .subtract: 0,
         .multiply: 0,
-        .divide: 0] {
-            didSet {
-                NotificationCenter.default.post(name: Notification.Name("DictionaryDidChange"), object: nil)
-            }
-        }
+        .divide: 0]
     
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Present the TrainViewController and set a delegate
+        let trainVC = TrainViewController()
+        trainVC.delegate = self
+        self.present(trainVC, animated: true, completion: nil)
+        
         configureButtons()
-        
-        // Register observer for dictionary changes
-        NotificationCenter.default.addObserver(self, selector: #selector(updateScore), name: Notification.Name("DictionaryDidChange"), object: nil)
-        
-        // Update label with initial dictionary values
-        updateScore()
+        updateScoreOnLabels()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateScoreOnLabels()
     }
     
     // MARK: - Actions
@@ -68,12 +71,29 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func updateScore() {
-        addLabel.text = String(ViewController.mathTypeScore[.add] ?? 0)
-        subtractLabel.text = String(ViewController.mathTypeScore[.subtract] ?? 0)
-        multiplyLabel.text = String(ViewController.mathTypeScore[.multiply] ?? 0)
-        divideLabel.text = String(ViewController.mathTypeScore[.divide] ?? 0)
+    func update(score: Int, for mathType: MathTypes) {
+        if (mathTypeScore[mathType] != nil) {
+            print(mathTypeScore.values)
+            mathTypeScore[mathType]! += score
+            print(mathTypeScore.values)
+        }
     }
-
+    
+    func updateScoreOnLabels() {
+        for (key, value) in mathTypeScore {
+            if key == .add {
+                self.addLabel.text = String(value)
+            }
+            if key == .divide {
+                divideLabel.text = String(value)
+            }
+            if key == .multiply {
+                multiplyLabel.text = String(value)
+            }
+            if key == .subtract {
+                subtractLabel.text = String(value)
+                
+            }
+        }
+    }
 }
-

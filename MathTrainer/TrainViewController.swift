@@ -16,6 +16,8 @@ final class TrainViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     
     // MARK: - Properties
+    var delegate: TrainViewControllerDelegate? // Delegate property
+    
     var type: MathTypes = .add {
         didSet {
             switch type {
@@ -30,7 +32,7 @@ final class TrainViewController: UIViewController {
             }
         }
     }
-    
+
     private var firstNumber = 0
     private var secondNumber = 0
     private var sign: String = ""
@@ -64,8 +66,8 @@ final class TrainViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        // Add score to the dictionary
-        ViewController.mathTypeScore[type]? += count
+        super.viewDidDisappear(animated)
+        delegate?.update(score: count, for: type)
     }
     
     // MARK: - IBActions
@@ -155,4 +157,9 @@ final class TrainViewController: UIViewController {
             self?.configureButtons()
         }
     }
+}
+
+// MARK: - Protocols
+protocol TrainViewControllerDelegate: UIViewController {
+    func update(score: Int, for mathType: MathTypes)
 }
