@@ -31,8 +31,7 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let trainVC = TrainViewController()
+
         configureButtons()
     }
     
