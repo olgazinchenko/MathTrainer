@@ -72,11 +72,7 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
     }
     
     func update(score: Int, for mathType: MathTypes) {
-        if (mathTypeScore[mathType] != nil) {
-            print(mathTypeScore.values)
             mathTypeScore[mathType]! += score
-            print(mathTypeScore.values)
-        }
     }
     
     func updateScoreOnLabels() {
