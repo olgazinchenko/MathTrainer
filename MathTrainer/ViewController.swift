@@ -11,16 +11,27 @@ enum MathTypes: Int {
     case add, subtract, multiply, divide
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TrainViewControllerDelegate {
+    
     // MARK: - IBOutlets
     @IBOutlet var buttonsCollection: [UIButton]!
+    @IBOutlet weak var addLabel: UILabel!
+    @IBOutlet weak var subtractLabel: UILabel!
+    @IBOutlet weak var multiplyLabel: UILabel!
+    @IBOutlet weak var divideLabel: UILabel!
     
     // MARK: - Properties
     private var selectedType: MathTypes = .add
+    private var mathTypeScore: [MathTypes: Int] = [
+        .add: 0,
+        .subtract: 0,
+        .multiply: 0,
+        .divide: 0]
     
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         configureButtons()
     }
     
@@ -36,6 +47,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? TrainViewController {
             viewController.type = selectedType
+            viewController.delegate = self
         }
     }
     
@@ -48,6 +60,22 @@ class ViewController: UIViewController {
             button.layer.shadowRadius = 3
         }
     }
-
 }
 
+// MARK: - Extensions
+extension ViewController {
+    func update(score: Int, for mathType: MathTypes) {
+        mathTypeScore[mathType]! += score
+        let totalScore = String(mathTypeScore[mathType] ?? 0)
+        switch mathType {
+        case .add:
+            addLabel.text = totalScore
+        case .subtract:
+            subtractLabel.text = totalScore
+        case .multiply:
+            multiplyLabel.text = totalScore
+        case .divide:
+            divideLabel.text = totalScore
+        }
+    }
+}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -214,7 +214,12 @@
                             <constraint firstItem="B4g-lt-bvB" firstAttribute="centerY" secondItem="U3a-FR-WnY" secondAttribute="centerY" id="wiU-r5-5Ea"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kLk-ZF-FVV"/>
                     <connections>
+                        <outlet property="addLabel" destination="cej-rF-Igp" id="q9a-CH-96E"/>
+                        <outlet property="divideLabel" destination="FSz-ce-nNn" id="koC-f6-mfv"/>
+                        <outlet property="multiplyLabel" destination="4xK-7U-OWd" id="mkl-UH-NVh"/>
+                        <outlet property="subtractLabel" destination="Rs9-im-ycl" id="h5G-cj-vDy"/>
                         <outletCollection property="buttonsCollection" destination="TWf-fR-VB4" collectionClass="NSMutableArray" id="BCk-SQ-ErO"/>
                         <outletCollection property="buttonsCollection" destination="6kD-d0-ACc" collectionClass="NSMutableArray" id="sYo-kR-jdC"/>
                         <outletCollection property="buttonsCollection" destination="rDa-8z-DGL" collectionClass="NSMutableArray" id="Khf-44-Khm"/>
@@ -231,7 +236,7 @@
             <objects>
                 <viewController id="mzT-Qm-9ja" customClass="TrainViewController" customModule="MathTrainer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Os-Rj-yd5">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BN-Re-q8A">
@@ -278,7 +283,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lEd-s3-96U"/>
-                                    <action selector="leftAction:" destination="mzT-Qm-9ja" eventType="touchUpInside" id="Amk-Qv-GWJ"/>
+                                    <action selector="leftButtonAction:" destination="mzT-Qm-9ja" eventType="touchUpInside" id="Amk-Qv-GWJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOx-nE-Spu">
@@ -300,15 +305,23 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uDh-RV-xNV"/>
-                                    <action selector="rightAction:" destination="mzT-Qm-9ja" eventType="touchUpInside" id="k6y-m3-1Gn"/>
+                                    <action selector="rightButtonAction:" destination="mzT-Qm-9ja" eventType="touchUpInside" id="k6y-m3-1Gn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Px-AN-JbH">
+                                <rect key="frame" x="134" y="211" width="125" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IqZ-gm-Da7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vOx-nE-Spu" firstAttribute="centerX" secondItem="8Os-Rj-yd5" secondAttribute="centerX" constant="60" id="15f-VD-iMr"/>
                             <constraint firstItem="wmX-93-ZKR" firstAttribute="top" secondItem="ghU-tr-KbN" secondAttribute="bottom" constant="120" id="3tq-me-wgN"/>
+                            <constraint firstItem="1Px-AN-JbH" firstAttribute="centerX" secondItem="8Os-Rj-yd5" secondAttribute="centerX" id="4lS-m6-X8j"/>
+                            <constraint firstItem="ghU-tr-KbN" firstAttribute="top" secondItem="1Px-AN-JbH" secondAttribute="bottom" constant="120" id="7uc-B2-3Uc"/>
                             <constraint firstItem="vOx-nE-Spu" firstAttribute="centerY" secondItem="wmX-93-ZKR" secondAttribute="centerY" id="Gvs-7Z-Rdw"/>
                             <constraint firstItem="5BN-Re-q8A" firstAttribute="top" secondItem="IqZ-gm-Da7" secondAttribute="top" constant="40" id="NHT-hy-tQx"/>
                             <constraint firstItem="IqZ-gm-Da7" firstAttribute="trailing" secondItem="5BN-Re-q8A" secondAttribute="trailing" constant="40" id="eQj-G8-FKL"/>
@@ -322,6 +335,7 @@
                         <outlet property="leftButton" destination="wmX-93-ZKR" id="8g3-NH-RDj"/>
                         <outlet property="questionLabel" destination="ghU-tr-KbN" id="4MK-03-CU7"/>
                         <outlet property="rightButton" destination="vOx-nE-Spu" id="jhG-Wc-MQp"/>
+                        <outlet property="scoreLabel" destination="1Px-AN-JbH" id="OdK-wE-LIG"/>
                         <outletCollection property="buttonsCollection" destination="wmX-93-ZKR" collectionClass="NSMutableArray" id="kb1-kG-oQg"/>
                         <outletCollection property="buttonsCollection" destination="vOx-nE-Spu" collectionClass="NSMutableArray" id="Ppp-07-Dkh"/>
                         <outletCollection property="buttonsCollection" destination="5BN-Re-q8A" collectionClass="NSMutableArray" id="neR-yS-nUF"/>
