@@ -7,6 +7,11 @@
 
 import UIKit
 
+// MARK: - Protocols
+protocol TrainViewControllerDelegate: UIViewController {
+    func update(score: Int, for mathType: MathTypes)
+}
+
 final class TrainViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet var buttonsCollection: [UIButton]!
@@ -157,9 +162,4 @@ final class TrainViewController: UIViewController {
             self?.configureButtons()
         }
     }
-}
-
-// MARK: - Protocols
-protocol TrainViewControllerDelegate: UIViewController {
-    func update(score: Int, for mathType: MathTypes)
 }

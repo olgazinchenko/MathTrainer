@@ -32,18 +32,8 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Present the TrainViewController and set a delegate
         let trainVC = TrainViewController()
-        trainVC.delegate = self
-        self.present(trainVC, animated: true, completion: nil)
-        
         configureButtons()
-        updateScoreOnLabels()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        updateScoreOnLabels()
     }
     
     // MARK: - Actions
@@ -58,6 +48,7 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? TrainViewController {
             viewController.type = selectedType
+            viewController.delegate = self
         }
     }
     
@@ -70,26 +61,22 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
             button.layer.shadowRadius = 3
         }
     }
-    
+}
+
+// MARK: - Extensions
+extension ViewController {
     func update(score: Int, for mathType: MathTypes) {
-            mathTypeScore[mathType]! += score
-    }
-    
-    func updateScoreOnLabels() {
-        for (key, value) in mathTypeScore {
-            if key == .add {
-                self.addLabel.text = String(value)
-            }
-            if key == .divide {
-                divideLabel.text = String(value)
-            }
-            if key == .multiply {
-                multiplyLabel.text = String(value)
-            }
-            if key == .subtract {
-                subtractLabel.text = String(value)
-                
-            }
+        mathTypeScore[mathType]! += score
+        let totalScore = String(mathTypeScore[mathType] ?? 0)
+        switch mathType {
+        case .add:
+            addLabel.text = totalScore
+        case .subtract:
+            subtractLabel.text = totalScore
+        case .multiply:
+            multiplyLabel.text = totalScore
+        case .divide:
+            divideLabel.text = totalScore
         }
     }
 }
