@@ -196,6 +196,17 @@
                                     <constraint firstItem="rDa-8z-DGL" firstAttribute="leading" secondItem="U3a-FR-WnY" secondAttribute="leading" id="z2T-rE-Qf4"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhA-4q-uXT">
+                                <rect key="frame" x="163" y="753.66666666666663" width="67.333333333333314" height="34.333333333333371"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Clear">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="clearAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xZv-4e-ALv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -206,17 +217,20 @@
                             <constraint firstItem="U3a-FR-WnY" firstAttribute="centerX" secondItem="i9L-rF-OqT" secondAttribute="centerX" id="NU8-dH-jAE"/>
                             <constraint firstItem="FsA-SU-zfb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OkU-06-HXP"/>
                             <constraint firstItem="FsA-SU-zfb" firstAttribute="top" secondItem="u7i-yv-Vo6" secondAttribute="bottom" constant="40" id="RP7-wW-SBa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zhA-4q-uXT" secondAttribute="bottom" constant="30" id="Vyx-uf-JhL"/>
                             <constraint firstItem="i9L-rF-OqT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YDT-y3-H8r"/>
                             <constraint firstItem="U3a-FR-WnY" firstAttribute="top" secondItem="i9L-rF-OqT" secondAttribute="bottom" constant="20" id="YLt-Bt-Z6a"/>
                             <constraint firstItem="tKl-zd-Mgt" firstAttribute="centerY" secondItem="i9L-rF-OqT" secondAttribute="centerY" id="eht-7r-6G1"/>
                             <constraint firstItem="u7i-yv-Vo6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n7h-Ki-PnN"/>
                             <constraint firstItem="i9L-rF-OqT" firstAttribute="top" secondItem="FsA-SU-zfb" secondAttribute="bottom" constant="40" id="nj5-Un-1gr"/>
+                            <constraint firstItem="zhA-4q-uXT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tRJ-sY-3We"/>
                             <constraint firstItem="B4g-lt-bvB" firstAttribute="centerY" secondItem="U3a-FR-WnY" secondAttribute="centerY" id="wiU-r5-5Ea"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kLk-ZF-FVV"/>
                     <connections>
                         <outlet property="addLabel" destination="cej-rF-Igp" id="q9a-CH-96E"/>
+                        <outlet property="clearButton" destination="zhA-4q-uXT" id="ZT2-QL-J10"/>
                         <outlet property="divideLabel" destination="FSz-ce-nNn" id="koC-f6-mfv"/>
                         <outlet property="multiplyLabel" destination="4xK-7U-OWd" id="mkl-UH-NVh"/>
                         <outlet property="subtractLabel" destination="Rs9-im-ycl" id="h5G-cj-vDy"/>
@@ -236,7 +250,7 @@
             <objects>
                 <viewController id="mzT-Qm-9ja" customClass="TrainViewController" customModule="MathTrainer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Os-Rj-yd5">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BN-Re-q8A">

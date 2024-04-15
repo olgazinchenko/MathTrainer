@@ -32,6 +32,7 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
     @IBOutlet weak var subtractLabel: UILabel!
     @IBOutlet weak var multiplyLabel: UILabel!
     @IBOutlet weak var divideLabel: UILabel!
+    @IBOutlet weak var clearButton: UIButton!
     
     // MARK: - Properties
     private var selectedType: MathTypes = .add
@@ -52,6 +53,14 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
     @IBAction func buttonAction(_ sender: UIButton) {
         selectedType = MathTypes(rawValue: sender.tag) ?? .add
         performSegue(withIdentifier: "goToNext", sender: sender)
+    }
+    
+    @IBAction func clearAction(_ sender: UIButton) {
+        MathTypes.allCases.forEach { type in
+            let key = type.key
+            UserDefaults.standard.removeObject(forKey: key)
+            clearCountLabels()
+        }
     }
     
     @IBAction func unwindAction(unwindSeque: UIStoryboardSegue) {
@@ -84,6 +93,13 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
                 divideLabel.text = stringValue
             }
         }
+    }
+    
+    private func clearCountLabels() {
+        addLabel.text = "-"
+        subtractLabel.text = "-"
+        multiplyLabel.text = "-"
+        divideLabel.text = "-"
     }
     
     private func configureButtons() {
