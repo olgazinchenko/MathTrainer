@@ -44,6 +44,8 @@ final class TrainViewController: UIViewController {
     private var count: Int = 0 {
         didSet {
             scoreLabel.text = "Score: \(count)"
+            // Save count by type
+            UserDefaults.standard.setValue(count, forKey: type.key)
         }
     }
     
@@ -68,6 +70,9 @@ final class TrainViewController: UIViewController {
         super.viewDidLoad()
         configureQuestion()
         configureButtons()
+        if let count = UserDefaults.standard.object(forKey: type.key) as? Int {
+            self.count = count
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -162,4 +167,8 @@ final class TrainViewController: UIViewController {
             self?.configureButtons()
         }
     }
+}
+
+extension UserDefaults {
+    static let conteiner = UserDefaults(suiteName: "conteiner")
 }

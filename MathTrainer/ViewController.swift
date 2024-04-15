@@ -7,8 +7,21 @@
 
 import UIKit
 
-enum MathTypes: Int {
+enum MathTypes: Int, CaseIterable {
     case add, subtract, multiply, divide
+    
+    var key: String {
+        switch self {
+        case .add:
+            return "addCount"
+        case .subtract:
+            return "subtractCount"
+        case .multiply:
+            return "multiplyCount"
+        case .divide:
+            return "divideCount"
+        }
+    }
 }
 
 class ViewController: UIViewController, TrainViewControllerDelegate {
@@ -31,8 +44,8 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureButtons()
+        setCountLabels()
     }
     
     // MARK: - Actions
@@ -41,13 +54,35 @@ class ViewController: UIViewController, TrainViewControllerDelegate {
         performSegue(withIdentifier: "goToNext", sender: sender)
     }
     
-    @IBAction func unwindAction(unwindSeque: UIStoryboardSegue) { }
+    @IBAction func unwindAction(unwindSeque: UIStoryboardSegue) {
+        setCountLabels()
+    }
     
     // MARK: - Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? TrainViewController {
             viewController.type = selectedType
             viewController.delegate = self
+        }
+    }
+    
+    private func setCountLabels() {
+        MathTypes.allCases.forEach { type in
+            let key = type.key
+            guard let count = UserDefaults.standard.object(forKey: key)
+                    as? Int else { return }
+            let stringValue = String(count)
+            
+            switch type {
+            case .add:
+                addLabel.text = stringValue
+            case .subtract:
+                subtractLabel.text = stringValue
+            case .multiply:
+                multiplyLabel.text = stringValue
+            case .divide:
+                divideLabel.text = stringValue
+            }
         }
     }
     
